@@ -1,0 +1,67 @@
+﻿{% extends 'shop/base_shop.html'%}
+ {% load rest_framework %}
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Orders
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 60%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+	<form style="font-size:100%;width:30%"  action="{%url 'orders_front_user_list_url' %}" method='get'>
+		{% csrf_token %}
+	 	{{form.search_user}}
+		<button type="submit" class="btn btn-primary">Найти</button>
+	</form>
+
+	<table>
+  		<tr>
+   		    <th style="width:5%">Номер</th>
+			<th style="width:5%">Ник</th>
+            <th style="width:5%">Телефон</th>
+		    <th style="width:30%">Почта</th>
+
+  		 </tr>
+	
+	
+		
+	{% for order in orders%}
+		<tr>
+		 	<td style="font-size:80%;"><a href="{{order.get_absolute_url}}">{{order.id}}</a></td>
+			<td style="font-size:80%;">{{order.username}}</td>
+		 	<td style="font-size:80%;">{{order.phone_number}}</td>
+			<td style="font-size:80%;">{{order.email}}</td>
+
+		</tr>
+	{% endfor %}
+	
+	
+	</table>
+{% include "pagination.html" with page=orders %}
+</div>
+{{s}}
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

@@ -1,0 +1,61 @@
+﻿{% extends 'shop/base_shop.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Products
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 60%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+   		    <th style="width:5%">Название</th>
+            <th style="width:5%">Категория</th>
+		    <th style="width:30%">Описание</th>
+
+  		 </tr>
+	
+	
+		
+	{% for product in products%}
+		<tr>
+		 <td style="font-size:80%;"><a href="{{product.get_absolute_url}}">{{product.name}}</a></td>
+    		 <td style="font-size:80%;">{{product.category}}</td>
+		 <td style="font-size:80%;">{{product.descryption}}</td>
+
+		</tr>
+	{% endfor %}
+	
+	
+	</table>
+ <a class="btn btn-info" href="{%url 'product_front_create_url'%}" role="button">Новое задание</a>
+{% include "pagination.html" with page=products %}
+</div>
+{{s}}
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

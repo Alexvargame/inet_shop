@@ -1,0 +1,33 @@
+﻿{% extends 'orders/base_order.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Детализация заказа
+{% endblock %}
+
+
+{% block content %}
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">Заказ {{orderitem.order}}</li>
+		<li class="list-group-item">Товар {{orderitem.product}}</li>
+		<li class="list-group-item">Цена {{orderitem.price}}</li>
+		<li class="list-group-item">Кол-во {{orderitem.quantity}}</li>
+	</div>
+
+	{% if request.user.is_authenticated %}
+		<div class="obj-panel">
+			 <p>Выбрать</p>
+				 {% block obj-panel%}
+					<a class="btn btn-light" href="">Редактировать</a>
+					<a class="btn btn-danger" href="">Del</a>
+					<a class="btn btn-light" href="{{orderitem.order.get_absolute_url}}">Вернуться к заказу</a>
+				 {%endblock%}
+		</div>
+	{% endif%}
+
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

@@ -1,0 +1,63 @@
+﻿{% extends 'orders/base_order.html'%}
+
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Create Order
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+	 <div class="order-info">
+		 <h3>Ваш заказ</h3>
+		 <ul>
+		 	{% for item in cart %}
+				<li>
+					 {{ item.quantity }}x {{ item.product.name }}
+					<span>${{ item.total_price }}</span>
+				</li>
+		 	{% endfor %}
+		 </ul>
+		 <p>Total: ${{ cart.get_total_price }}</p>
+ 	</div>
+	<form style="font-size:100%;width:30%"  action="" method='post'>
+		{% csrf_token %}
+		{% if user.is_authenticated %}
+			Ник: {{form.username}}</br>
+		{%else%}
+			Имя: {{form.name}}</br>
+		{%endif%}
+		Почта:{{form.email}}</br>
+		Телефон:{{form.phone_number}}</br>
+
+<button type="submit" class="btn btn-primary">Сохранить</button>
+	
+
+	
+        </form>
+{{s}}</br>
+
+</div>
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

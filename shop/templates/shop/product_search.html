@@ -1,0 +1,44 @@
+﻿{% extends 'shop/base_shop.html'%}
+
+ 
+{% block title %}
+		
+	Search Product
+{% endblock %}
+
+
+{% block content %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+</style>
+	
+       
+
+	<form action="{% url 'product_front_search_url' %}" method='get'>
+		
+	<div class="form-group">
+		{% csrf_token %}
+		<table style="width:60%">
+			<tr>
+				<td style="width:40%">Категория{{form.category}}</td>
+				<td style="width:10%">Цена{{form.price_min}}-{{form.price_max}}</td>
+				<td style="width:10%">Размер{{form.size}}</td>
+				<td style="width:10%">Длина{{form.length_min}}-{{form.length_max}}</td>
+				<td style="width:10%">Вес{{form.weight_min}}-{{form.weight_max}}
+			 </tr>
+		</table>
+	
+	</div>
+	<button type="submit" class="btn btn-primary">Выбрать</button>
+	</form>
+	
+
+
+
+
+{% endblock %}
+
